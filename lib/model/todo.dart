@@ -11,11 +11,11 @@ class ToDo {
 
   static List<ToDo> todoList() {
     return [
-      ToDo(
+      /*ToDo(
         id: '01',
         todoText: 'skate',
         isDone: false,
-      )
+      )*/
     ];
   }
 }

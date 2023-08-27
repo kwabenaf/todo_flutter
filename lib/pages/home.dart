@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../constants/colors.dart';
+import '../data/database.dart';
 import '../model/todo.dart';
 import '../widgets/todo_item.dart';
 
@@ -12,6 +14,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  //reference to hive box
+  final _mybox = Hive.openBox('mybox');
+  TodoDatabase db = TodoDatabase();
+
   final todosList = ToDo.todoList();
   List<ToDo> _foundTodos = [];
   final _todoController = TextEditingController();
