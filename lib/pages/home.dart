@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:tut_todo/util/todo_tile.dart';
 
 import '../constants/colors.dart';
-import '../data/database.dart';
-import '../model/todo.dart';
-import '../widgets/todo_item.dart';
+//import '../model/todo.dart';
+//import '../widgets/todo_item.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,10 +13,91 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // list of todo tasks
+  List toDoList = [
+    ["oh hell nah", false],
+    ["did it work?", false],
+  ];
+
+  //checkbox was tapped
+  void checkBoxChanged(bool? value, int index) {
+    setState(() {
+      toDoList[index][1] = !toDoList[index][1];
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: sgGreen,
+      appBar: _buildAppBar(),
+      body: ListView.builder(
+        itemCount: toDoList.length,
+        itemBuilder: (context, index) {
+          return ToDoTile(
+            taskName: toDoList[index][0],
+            taskCompleted: toDoList[index][1],
+            onChanged: (value) => checkBoxChanged(value, index),
+          );
+        },
+      ),
+    );
+  }
+}
+
+AppBar _buildAppBar() {
+  return AppBar(
+    title: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Icon(
+          Icons.menu,
+          color: tdBlack,
+          size: 30,
+        ),
+        SizedBox(
+          height: 40,
+          width: 40,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.asset('assets/images/tree.jpg'),
+          ),
+        )
+      ],
+    ),
+    backgroundColor: sgGreen,
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+class _HomeState extends State<Home> {
   //reference to hive box
   final _mybox = Hive.openBox('mybox');
   TodoDatabase db = TodoDatabase();
-
+/*
   final todosList = ToDo.todoList();
   List<ToDo> _foundTodos = [];
   final _todoController = TextEditingController();
@@ -27,6 +107,7 @@ class _HomeState extends State<Home> {
     _foundTodos = todosList;
     super.initState();
   }
+*/
 
   @override
   Widget build(BuildContext context) {
@@ -59,12 +140,12 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                       ),
-                      for (ToDo todo in _foundTodos.reversed)
+                      /*for (ToDo todo in _foundTodos.reversed)
                         ToDoItem(
                           todo: todo,
                           onToDoChanged: _handleToDoChange,
                           onDeleteItem: _deleteToDoItem,
-                        ),
+                        ),*/
                     ],
                   ),
                 )
@@ -76,26 +157,26 @@ class _HomeState extends State<Home> {
             child: Row(children: [
               Expanded(
                 child: Container(
-                    margin: const EdgeInsets.only(
-                      bottom: 20,
-                      right: 20,
-                      left: 20,
-                    ),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.grey,
-                          offset: Offset(0.0, 0.0),
-                          blurRadius: 10.0,
-                          spreadRadius: 0.0,
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: TextField(
+                  margin: const EdgeInsets.only(
+                    bottom: 20,
+                    right: 20,
+                    left: 20,
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(0.0, 0.0),
+                        blurRadius: 10.0,
+                        spreadRadius: 0.0,
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  /*child: TextField(
                       controller: _todoController,
                       decoration: const InputDecoration(
                         hintText: 'Add a new task',
@@ -104,7 +185,8 @@ class _HomeState extends State<Home> {
                       onSubmitted: (value) {
                         _addToDoItem(_todoController.text);
                       },
-                    )),
+                    )*/
+                ),
               ),
               Container(
                 margin: const EdgeInsets.only(
@@ -113,7 +195,7 @@ class _HomeState extends State<Home> {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    _addToDoItem(_todoController.text);
+                    //_addToDoItem(_todoController.text);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: tdpurp,
@@ -135,6 +217,7 @@ class _HomeState extends State<Home> {
     );
   }
 
+/*
   void _handleToDoChange(ToDo todo) {
     setState(() {
       todo.isDone = !todo.isDone;
@@ -180,6 +263,8 @@ class _HomeState extends State<Home> {
     });
   }
 
+*/
+
   Widget searchBox() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -187,9 +272,9 @@ class _HomeState extends State<Home> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: TextField(
-        onChanged: (value) => _runFilter(value),
-        decoration: const InputDecoration(
+      child: const TextField(
+        //onChanged: (value) => _runFilter(value),
+        decoration: InputDecoration(
           contentPadding: EdgeInsets.all(0),
           prefixIcon: Icon(
             Icons.search,
@@ -232,3 +317,4 @@ class _HomeState extends State<Home> {
     );
   }
 }
+*/

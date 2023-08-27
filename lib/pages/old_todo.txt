@@ -1,3 +1,5 @@
+//todo_item.dart - this is responsible for the todo title still and funtionalilty
+
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
@@ -100,5 +102,35 @@ class ToDoItem extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+
+-------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+
+
+//todo.dart (class) - This is the list of todos **do not think its too important**
+
+
+class ToDo {
+  String? id;
+  String? todoText;
+  bool isDone;
+
+  ToDo({
+    required this.id,
+    required this.todoText,
+    this.isDone = false,
+  });
+
+  static List<ToDo> todoList() {
+    return [
+      /*ToDo(
+        id: '01',
+        todoText: 'skate',
+        isDone: false,
+      )*/
+    ];
   }
 }
