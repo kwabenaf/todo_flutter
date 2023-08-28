@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tut_todo/constants/colors.dart';
 
 class ToDoTile extends StatelessWidget {
   final String taskName;
@@ -15,18 +16,37 @@ class ToDoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(25.0),
+      padding: const EdgeInsets.only(
+        left: 25,
+        right: 25,
+        top: 25,
+      ),
       child: Container(
         padding: const EdgeInsets.all(24.0),
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(20)),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Row(
           children: [
             //checkbox
-            Checkbox(value: taskCompleted, onChanged: onChanged),
+            Checkbox(
+              value: taskCompleted,
+              onChanged: onChanged,
+              //checkColor: Colors.yellow,
+              activeColor: tdpurp,
+            ),
 
             //task name
-            Text(taskName),
+            Text(
+              taskName,
+              style: TextStyle(
+                decoration: taskCompleted
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
+                fontSize: 16,
+              ),
+            ),
           ],
         ),
       ),

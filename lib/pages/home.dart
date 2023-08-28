@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tut_todo/util/todo_tile.dart';
 
 import '../constants/colors.dart';
+import '../util/dialog_box.dart';
 //import '../model/todo.dart';
 //import '../widgets/todo_item.dart';
 
@@ -13,6 +14,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  //text controller
+  final _controller = TextEditingController();
+
   // list of todo tasks
   List toDoList = [
     ["oh hell nah", false],
@@ -26,11 +30,37 @@ class _HomeState extends State<Home> {
     });
   }
 
+  //save new task
+  void saveNewTask() {
+    setState(() {
+      toDoList.add((_controller.text, false));
+    });
+    Navigator.of(context).pop();
+  }
+
+  //creating a new task
+  void createNewTask() {
+    showDialog(
+      context: context,
+      builder: (builder) {
+        return DialogBox(
+          controller: _controller,
+          onSave: saveNewTask,
+          onCancel: () => Navigator.of(context).pop(),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: sgGreen,
       appBar: _buildAppBar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: createNewTask,
+        child: const Icon(Icons.add),
+      ),
       body: ListView.builder(
         itemCount: toDoList.length,
         itemBuilder: (context, index) {
@@ -163,7 +193,7 @@ class _HomeState extends State<Home> {
                     left: 20,
                   ),
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5,),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: const [
