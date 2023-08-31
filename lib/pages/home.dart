@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tut_todo/data/database.dart';
 import 'package:tut_todo/util/todo_tile.dart';
+import 'package:tut_todo/util/search_bar.dart' as CustomSearchBar;
 
 import '../constants/colors.dart';
 import '../util/dialog_box.dart';
@@ -18,7 +19,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   //reference the hive box
   final _mybox = Hive.box('mybox');
-  TodoDatabase db = TodoDatabase();
+  final TodoDatabase db = TodoDatabase();
 
   @override
   void initState() {
@@ -77,6 +78,13 @@ class _HomeState extends State<Home> {
     db.updateData();
   }
 
+  // Method to update the search keyword
+  void _runFilter(String enteredKeyword) {
+    setState(() {
+      db.setSearchKeyword(enteredKeyword);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,16 +94,26 @@ class _HomeState extends State<Home> {
         onPressed: createNewTask,
         child: const Icon(Icons.add),
       ),
-      body: ListView.builder(
-        itemCount: db.toDoList.length,
-        itemBuilder: (context, index) {
-          return ToDoTile(
-            taskName: db.toDoList[index][0],
-            taskCompleted: db.toDoList[index][1],
-            onChanged: (value) => checkBoxChanged(value, index),
-            deleteFunction: (context) => deleteTask(index),
-          );
-        },
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: CustomSearchBar.SearchBar(onSearchChanged: _runFilter),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: db.filteredToDoList.length,
+              itemBuilder: (context, index) {
+                return ToDoTile(
+                  taskName: db.filteredToDoList[index][0],
+                  taskCompleted: db.filteredToDoList[index][1],
+                  onChanged: (value) => checkBoxChanged(value, index),
+                  deleteFunction: (context) => deleteTask(index),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
