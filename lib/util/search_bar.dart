@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tut_todo/constants/colors.dart';
 
 class SearchBar extends StatelessWidget {
-  final Function(String) onSearchChanged;
+  final Function(String)
+      onSearchChanged; // Callback when the search text changes
 
   const SearchBar({required this.onSearchChanged});
 
@@ -15,7 +16,8 @@ class SearchBar extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: TextField(
-        onChanged: onSearchChanged,
+        onChanged:
+            onSearchChanged, // Call the provided callback when text changes
         decoration: const InputDecoration(
           contentPadding: EdgeInsets.all(0),
           prefixIcon: Icon(

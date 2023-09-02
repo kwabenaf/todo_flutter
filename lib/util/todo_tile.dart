@@ -3,10 +3,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:tut_todo/constants/colors.dart';
 
 class ToDoTile extends StatelessWidget {
-  final String taskName;
-  final bool taskCompleted;
-  Function(bool?)? onChanged;
-  Function(BuildContext)? deleteFunction;
+  final String taskName; // The name of the task
+  final bool taskCompleted; // Whether the task is completed or not
+  Function(bool?)? onChanged; // Callback for handling checkbox changes
+  Function(BuildContext)? deleteFunction; // Callback for deleting the task
 
   ToDoTile({
     super.key,
@@ -29,7 +29,7 @@ class ToDoTile extends StatelessWidget {
           motion: StretchMotion(),
           children: [
             SlidableAction(
-              onPressed: deleteFunction,
+              onPressed: deleteFunction, // Call the provided delete callback
               icon: Icons.delete,
               backgroundColor: Colors.red.shade400,
               borderRadius: BorderRadius.circular(12),
@@ -44,15 +44,14 @@ class ToDoTile extends StatelessWidget {
           ),
           child: Row(
             children: [
-              //checkbox
+              // Checkbox
               Checkbox(
                 value: taskCompleted,
-                onChanged: onChanged,
-                //checkColor: Colors.yellow,
+                onChanged: onChanged, // Call the provided onChanged callback
                 activeColor: tdpurp,
               ),
 
-              //task name
+              // Task name
               Text(
                 taskName,
                 style: TextStyle(

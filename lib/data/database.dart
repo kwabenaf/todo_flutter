@@ -4,11 +4,10 @@ class TodoDatabase {
   List toDoList = [];
   String _searchKeyword = ''; // New private field for search keyword
 
-  //reference to hive box
+  // Reference to Hive box
   final _myBox = Hive.box('mybox');
 
-  //run this if it is the first time ever
-  //opening this app
+  // Initialize the toDoList with default data
   void createInitialData() {
     toDoList = [
       ["Skate", false],
@@ -16,22 +15,22 @@ class TodoDatabase {
     ];
   }
 
-  //load the data from db
+  // Load data from the database (Hive box)
   void loadData() {
     toDoList = _myBox.get("TODOLIST");
   }
 
-  //update the db
+  // Update data in the database (Hive box)
   void updateData() {
     _myBox.put("TODOLIST", toDoList);
   }
 
-// Method to set the search keyword
+  // Method to set the search keyword for filtering
   void setSearchKeyword(String keyword) {
     _searchKeyword = keyword;
   }
 
-  // Method to get the filtered todo list based on search keyword
+  // Method to get the filtered todo list based on the search keyword
   List<dynamic> get filteredToDoList {
     if (_searchKeyword.isEmpty) {
       return toDoList;

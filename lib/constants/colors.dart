@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Custom colors
 const Color sgGreen = Color.fromARGB(255, 202, 251, 171);
 
 const Color tdRed = Color(0xFFDA4040);

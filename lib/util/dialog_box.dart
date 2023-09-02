@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tut_todo/util/my_button.dart';
 
 class DialogBox extends StatelessWidget {
-  final controller;
-  VoidCallback onSave;
-  VoidCallback onCancel;
+  final controller; // Text controller for user input
+  VoidCallback onSave; // Callback when the Save button is pressed
+  VoidCallback onCancel; // Callback when the Cancel button is pressed
 
   DialogBox({
     super.key,
@@ -22,7 +22,7 @@ class DialogBox extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            //get user input
+            // User input field
             TextField(
               controller: controller,
               decoration: InputDecoration(
@@ -34,12 +34,12 @@ class DialogBox extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                //save button
+                // Save button
                 MyButton(text: "Save", onPressed: onSave),
 
                 const SizedBox(width: 8),
 
-                //cancel button
+                // Cancel button
                 MyButton(text: "Cancel", onPressed: onCancel)
               ],
             )
