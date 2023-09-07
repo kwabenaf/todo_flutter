@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:tut_todo/constants/colors.dart';
+import 'package:tut_todo/constants/constants.dart';
 
 class ToDoTile extends StatelessWidget {
   final String taskName; // The name of the task
@@ -31,7 +31,7 @@ class ToDoTile extends StatelessWidget {
             SlidableAction(
               onPressed: deleteFunction, // Call the provided delete callback
               icon: Icons.delete,
-              backgroundColor: Colors.red.shade400,
+              backgroundColor: tddel,
               borderRadius: BorderRadius.circular(12),
             ),
           ],
@@ -58,7 +58,7 @@ class ToDoTile extends StatelessWidget {
                   decoration: taskCompleted
                       ? TextDecoration.lineThrough
                       : TextDecoration.none,
-                  fontSize: 16,
+                  fontSize: mediumFont,
                 ),
               ),
             ],

@@ -3,8 +3,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tut_todo/data/database.dart';
 import 'package:tut_todo/util/todo_tile.dart';
 import 'package:tut_todo/util/search_bar.dart' as CustomSearchBar;
+import 'package:tut_todo/constants/constants.dart';
 
-import '../constants/colors.dart';
 import '../util/dialog_box.dart';
 
 class Home extends StatefulWidget {

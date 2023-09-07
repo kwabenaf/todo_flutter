@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tut_todo/constants/colors.dart';
+import 'package:tut_todo/constants/constants.dart';
 
 class SearchBar extends StatelessWidget {
   final Function(String)
@@ -12,7 +12,7 @@ class SearchBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: tdWhite,
         borderRadius: BorderRadius.circular(20),
       ),
       child: TextField(
@@ -31,7 +31,7 @@ class SearchBar extends StatelessWidget {
           ),
           border: InputBorder.none,
           hintText: 'Search Task',
-          hintStyle: TextStyle(color: tdGrey),
+          hintStyle: hintTextStyle,
         ),
       ),
     );
