@@ -5,7 +5,7 @@ class TodoDatabase {
   String _searchKeyword = ''; // New private field for search keyword
 
   // Reference to Hive box
-  final _myBox = Hive.box('mybox');
+  final _mybox = Hive.box('mybox');
 
   // Initialize the toDoList with default data
   void createInitialData() {
@@ -17,12 +17,12 @@ class TodoDatabase {
 
   // Load data from the database (Hive box)
   void loadData() {
-    toDoList = _myBox.get("TODOLIST");
+    toDoList = _mybox.get("TODOLIST");
   }
 
   // Update data in the database (Hive box)
   void updateData() {
-    _myBox.put("TODOLIST", toDoList);
+    _mybox.put("TODOLIST", toDoList);
   }
 
   // Method to set the search keyword for filtering

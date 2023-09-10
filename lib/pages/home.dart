@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tut_todo/data/database.dart';
 import 'package:tut_todo/util/todo_tile.dart';
-import 'package:tut_todo/util/search_bar.dart' as CustomSearchBar;
+import 'package:tut_todo/util/search_bar.dart' as custom_searchbar;
 import 'package:tut_todo/constants/constants.dart';
 
 import '../util/dialog_box.dart';
@@ -90,8 +90,7 @@ class _HomeState extends State<Home> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: CustomSearchBar.SearchBar(
-                onSearchChanged: _runFilter), // Custom search bar
+            child: custom_searchbar.SearchBar(onSearchChanged: _runFilter),
           ),
           Expanded(
             child: ListView.builder(
