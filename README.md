@@ -1,4 +1,4 @@
-# thoughtList
+# todo
 
 A new Flutter project.
 
